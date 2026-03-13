@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shblood Tools</title>
+
+<style>
+body{
+margin:0;
+background:black;
+font-family:Arial;
+color:white;
+}
+
+.header{
+text-align:center;
+padding:18px;
+font-size:26px;
+font-weight:bold;
+background:#111;
+letter-spacing:3px;
+}
+
+.card{
+display:flex;
+align-items:center;
+border:2px solid yellow;
+border-radius:18px;
+margin:12px;
+padding:16px;
+cursor:pointer;
+}
+
+.card img{
+width:55px;
+height:55px;
+background:transparent;
+border-radius:10px;
+margin-right:18px;
+object-fit:cover;
+}
+
+.card span{
+font-size:18px;
+}
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+.info-box{
+padding:20px;
+text-align:center;
+}
+
+textarea{
+width:90%;
+height:120px;
+border-radius:10px;
+border:none;
+padding:10px;
+font-size:15px;
+}
+
+.send-btn{
+margin-top:10px;
+padding:12px 30px;
+background:red;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+.bottom{
+position:fixed;
+bottom:0;
+width:100%;
+background:#111;
+display:flex;
+justify-content:space-around;
+padding:10px 0;
+}
+
+.menu{
+text-align:center;
+cursor:pointer;
+}
+
+.menu img{
+width:26px;
+display:block;
+margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">Shblood Tools</div>
+
+<div id="home" class="page active">
+
+<div class="card" onclick="window.location.href=link1">
+<img src="camhack.png">
+<span>Cam Hack</span>
+</div>
+
+<div class="card" onclick="window.location.href=link2">
+<img src="ipaddres.png">
+<span>IP Address</span>
+</div>
+
+<div class="card" onclick="window.location.href=link3">
+<img src="checkip.png">
+<span>Check IP</span>
+</div>
+
+<div class="card" onclick="window.location.href=link4">
+<img src="Telegram.png">
+<span>Search Username Telegram</span>
+</div>
+
+<div class="card" onclick="window.location.href=link5">
+<img src="QR.png">
+<span>QR Card Generator</span>
+</div>
+
+</div>
+
+<div id="info" class="page">
+
+<div class="info-box">
+
+<h3>Send Message</h3>
+
+<form id="tgForm">
+
+<textarea id="msg" placeholder="write message..." required></textarea>
+
+<br><br>
+
+<button class="send-btn" type="submit">Send</button>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="bottom">
+
+<div class="menu" onclick="openPage('home')">
+<img src="home.png">
+Home
+</div>
+
+<div class="menu" onclick="openPage('info')">
+<img src="info.png">
+Info
+</div>
+
+</div>
+
+<script>
+
+const link1="https://clever-cuchufli-4da23d.netlify.app";
+const link2="https://magnificent-truffle-67261c.netlify.app";
+const link3="https://reliable-snickerdoodle-426d18.netlify.app/";
+const link4="https://precious-sherbet-e25cc2.netlify.app";
+const link5="https://rad-pastelito-33d462.netlify.app/";
+
+const BOT_TOKEN="8316363314:AAGI0uJ6gFpeFgp6Kd2I16A3qjqo5isWIN8";
+const CHAT_ID="5071160578";
+
+function openPage(page){
+document.getElementById("home").classList.remove("active");
+document.getElementById("info").classList.remove("active");
+document.getElementById(page).classList.add("active");
+}
+
+document.getElementById("tgForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let text=document.getElementById("msg").value;
+
+fetch("https://api.telegram.org/bot"+BOT_TOKEN+"/sendMessage",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+chat_id:CHAT_ID,
+text:text
+})
+})
+
+.then(()=>{
+alert("Message Sent");
+document.getElementById("msg").value="";
+})
+.catch(()=>{
+alert("Error sending message");
+});
+
+});
+
+</script>
+
+</body>
+</html>
